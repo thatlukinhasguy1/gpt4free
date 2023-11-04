@@ -4,13 +4,10 @@ from enum import Enum
 import g4f
 from g4f import Provider
 
-from g4f.api import Api
 from g4f.gui.run import gui_parser, run_gui_args
-
 
 def run_gui(args):
     print("Running GUI...")
-
 
 def main():
     IgnoredProviders = Enum("ignore_providers", {key: key for key in Provider.__all__})
@@ -26,7 +23,7 @@ def main():
 
     args = parser.parse_args()
     if args.mode == "api":
-        controller=Api(g4f, debug=args.debug)
+        controller=g4f.api
         controller.list_ignored_providers=args.ignored_providers
         controller.run(args.bind, args.num_threads)
     elif args.mode == "gui":
